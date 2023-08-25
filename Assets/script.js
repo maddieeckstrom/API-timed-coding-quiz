@@ -1,22 +1,31 @@
 
-// connecting the save button on index.html to save data on highscores.html below
-var finalScore = document.getElementById("final-score");
-var initials = document.getElementById("initial");
+var submitButton = document.getElementById("submit");
 
 submitButton.addEventListener("click", function(event) {
-event.preventDefault();
+    event.preventDefault();
 
-var highscoreData = {
+let score = document.getElementById("final-score");
+let initials = document.getElementById("initial");
+
+// write an if statement here to make sure initials value is not blank
+if (initials == '') {
+    alert("You must provide initials")
+    return
+}
+
+let highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+
+let newScore = {
     finalScore: finalScore.value,
     initials: initials.value,
 };
 
-localStorage.setItem("highscoreData", JSON.stringify(highscoreData));
-renderMessage();
+highscores.push(newScore);
+window.localStorage.setItem('highscores', JSON.stringify(highscores));
+
+JSON.parse(window.localStorage.getItem('highscores'));
 
 });
-
-// use localStorage.getItem to access the stored data up above.. but how do I access it in highscores.html?
 
 
 // connecting the clear button in highscores.html to remove local storage data
