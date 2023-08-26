@@ -1,0 +1,29 @@
+.flex-container {
+    display: flex;
+}
+
+.scores {
+    display: flex;
+}
+
+a {
+    text-decoration: #ffc93c wavy underline;
+    color: #ffc93c;
+    background-color: #155263;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding: 20px;
+}
+
+.timer {
+    text-decoration: #155263 wavy underline;
+    color: #155263;
+    background-color: #ffc93c;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+    padding: 20px;
+}
+
+.start h1 {
+    display: flex;
+    justify-self: center;
+    color: #ff6f3c;
+}

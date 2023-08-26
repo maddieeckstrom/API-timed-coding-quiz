@@ -8,7 +8,8 @@ let score = document.getElementById("final-score");
 let initials = document.getElementById("initial");
 
 // write an if statement here to make sure initials value is not blank
-if (initials == '') {
+//how do I make it so it only alerts on a blank response?
+if (initials !== '') {
     alert("You must provide initials")
     return
 }
@@ -16,7 +17,7 @@ if (initials == '') {
 let highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
 
 let newScore = {
-    finalScore: finalScore.value,
+    score: score.value,
     initials: initials.value,
 };
 
@@ -26,14 +27,50 @@ window.localStorage.setItem('highscores', JSON.stringify(highscores));
 JSON.parse(window.localStorage.getItem('highscores'));
 
 });
+// use a loop to send all scores to the highscore page by using innerHTML or innerText methods
+
 
 
 // connecting the clear button in highscores.html to remove local storage data
 
-clearHistoryButton.addEventListener("click", function(event) {
-event.preventDefault();
+//var clearHistoryButton = document.getElementById("clearHistory")
 
-localStorage.removeItem("highscoreData", JSON.stringify(highscoreData));
-renderMessage("No Current Highscores");
+//clearHistoryButton.addEventListener("click", function(event) {
+//event.preventDefault();
 
+//localStorage.clear("highscores", JSON.stringify(highscores));
+//renderMessage();
+
+//})
+
+// start of timer code here
+
+letTimeRemaining = document.querySelector(".timer");
+const startBtn = document.querySelector("#start");
+const startScreenEl = document.querySelector("#start-screen");
+const quetsionsEl = docoument.querySelector("#test");
+
+// selects element by ID
+let time = document.getElementById("time");
+
+startBtn.addEventListener("click", function() {
+    let secondsLeft = 10;
+    //sets interval in variable
+    var timerInterval = setInterval(function() {
+        secondsLeft--;
+
+        timeRemaining.textContent = secondsLeft + " seconds left";
+
+        if(secondsLeft === 0) {
+            clearInterval(timerInterval);
+            sendMessage();
+        }
+    }, 1000);
+   
+    function sendMessage() {
+        timeRemaining.textContent = "Time is up!"
+    }
+
+    startScreenEl.classList.add("hide")
+    quetsionsEl.classList.remove("hide")
 })

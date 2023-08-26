@@ -1,8 +1,12 @@
 <body>
 
-    <script src="/Assets/script.js"></script>
+    <script src="/Assets/script.js">
+        document.getElementById("score-list").innerHTML = localStorage.getItem(highscores);
+    </script>
 
     <h1>Highscores</h1>
+    <ul id="score-list">
+    </ul>
 
     <button><a href="../index.html">Go Back</a></button>
 
