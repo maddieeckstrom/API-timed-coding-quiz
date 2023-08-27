@@ -30,6 +30,14 @@ a {
     font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
+.start p {
+    display: flex;
+    justify-content: center;
+    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+/* how do I center the start quiz button? */
+
 .hide {
-    display:none;
+    display: none;
 }

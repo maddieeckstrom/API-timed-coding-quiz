@@ -1,7 +1,7 @@
 
-var submitButton = document.getElementById("submit");
+var submitBtn = document.getElementById("submit");
 
-submitButton.addEventListener("click", function(event) {
+submitBtn.addEventListener("click", function(event) {
     event.preventDefault();
 
 let score = document.getElementById("final-score");
@@ -48,7 +48,8 @@ JSON.parse(window.localStorage.getItem('highscores'));
 letTimeRemaining = document.querySelector(".timer");
 const startBtn = document.querySelector("#start");
 const startScreenEl = document.querySelector("#start-screen");
-const quetsionsEl = docoument.querySelector("#test");
+//where do I add this test id?
+const questionsEl = docoument.querySelector("#test");
 
 // selects element by ID
 let time = document.getElementById("time");
@@ -72,5 +73,5 @@ startBtn.addEventListener("click", function() {
     }
 
     startScreenEl.classList.add("hide")
-    quetsionsEl.classList.remove("hide")
+    questionsEl.classList.remove("hide")
 })
