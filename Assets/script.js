@@ -1,30 +1,32 @@
 
-var submitBtn = document.getElementById("submit");
+const submitBtn = document.getElementById('submit');
 
-submitBtn.addEventListener("click", function(event) {
-    event.preventDefault();
+submitBtn.addEventListener("click", function() {
 
-let score = document.getElementById("final-score");
-let initials = document.getElementById("initial");
+var score = document.getElementById("final-score");
+var initials = document.getElementById("initial");
 
 // write an if statement here to make sure initials value is not blank
 //how do I make it so it only alerts on a blank response?
 if (initials !== '') {
     alert("You must provide initials")
-    return
+    return null
 }
 
-let highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
 
-let newScore = {
+var newScore = {
     score: score.value,
     initials: initials.value,
 };
 
-highscores.push(newScore);
-window.localStorage.setItem('highscores', JSON.stringify(highscores));
+function pushScores() {
 
-JSON.parse(window.localStorage.getItem('highscores'));
+    highscores.push(newScore);
+    window.localStorage.setItem('highscores', JSON.stringify(highscores));
+
+    JSON.parse(window.localStorage.getItem('highscores'));
+}
 
 });
 // use a loop to send all scores to the highscore page by using innerHTML or innerText methods
@@ -45,14 +47,14 @@ JSON.parse(window.localStorage.getItem('highscores'));
 
 // start of timer code here
 
-letTimeRemaining = document.querySelector(".timer");
+let timeRemaining = document.querySelector(".timer");
 const startBtn = document.querySelector("#start");
 const startScreenEl = document.querySelector("#start-screen");
 //where do I add this test id?
-const questionsEl = docoument.querySelector("#test");
+const questionsEl = document.querySelector("#test");
 
 // selects element by ID
-let time = document.getElementById("time");
+var time = document.getElementById("time");
 
 startBtn.addEventListener("click", function() {
     let secondsLeft = 10;
