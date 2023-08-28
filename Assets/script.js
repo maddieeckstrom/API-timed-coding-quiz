@@ -5,28 +5,30 @@ submitBtn.addEventListener("click", function() {
 
 var score = document.getElementById("final-score");
 var initials = document.getElementById("initial");
+// console.log(initials);
 
 // write an if statement here to make sure initials value is not blank
-//how do I make it so it only alerts on a blank response?
-if (initials !== '') {
-    alert("You must provide initials")
-    return null
+if (initials === "") {
+    alert("Please provide initials");
+    return;
 }
 
-var highscores = JSON.parse(window.localStorage.getItem('highscores')) || [];
+var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
 var newScore = {
     score: score.value,
     initials: initials.value,
 };
 
-function pushScores() {
+score = 10;
 
-    highscores.push(newScore);
-    window.localStorage.setItem('highscores', JSON.stringify(highscores));
+highscores.push(newScore);
+localStorage.setItem('highscores', JSON.stringify(highscores));
+//redirect to highscores page and display scores there
+window.location.href = "highscores.html";
 
-    JSON.parse(window.localStorage.getItem('highscores'));
-}
+//JSON.parse(window.localStorage.getItem('highscores'));
+//}
 
 });
 // use a loop to send all scores to the highscore page by using innerHTML or innerText methods
@@ -74,6 +76,6 @@ startBtn.addEventListener("click", function() {
         timeRemaining.textContent = "Time is up!"
     }
 
-    startScreenEl.classList.add("hide")
-    questionsEl.classList.remove("hide")
+   // startScreenEl.classList.add("hide")
+   // questionsEl.classList.remove("hide")
 })
