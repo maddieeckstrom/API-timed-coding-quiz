@@ -1,34 +1,34 @@
 
 const submitBtn = document.getElementById('submit');
 // event listener cannot read properties of null?
-submitBtn?.addEventListener("click", function() {
+submitBtn?.addEventListener("click", function () {
 
-var score = document.getElementById("final-score");
-var initials = document.getElementById("initial");
-// console.log(initials);
+    var score = document.getElementById("final-score");
+    var initials = document.getElementById("initial");
+    // console.log(initials);
 
-// write an if statement here to make sure initials value is not blank
-if (initials.value === "") {
-    alert("Please provide initials");
-    return;
-}
+    // write an if statement here to make sure initials value is not blank
+    if (initials.value === "") {
+        alert("Please provide initials");
+        return;
+    }
 
-var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+    var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
-var newScore = {
-    score: 10,
-    initials: initials.value,
-};
+    var newScore = {
+        score: 10,
+        initials: initials.value,
+    };
 
 
-highscores.push(newScore);
-console.log({highscores,newScore})
-localStorage.setItem('highscores', JSON.stringify(highscores));
-//redirect to highscores page and display scores there
-window.location.href = "highscores.html";
+    highscores.push(newScore);
+    console.log({ highscores, newScore })
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+    //redirect to highscores page and display scores there
+    window.location.href = "highscores.html";
 
-//JSON.parse(window.localStorage.getItem('highscores'));
-//}
+    //JSON.parse(window.localStorage.getItem('highscores'));
+    //}
 
 });
 // use a loop to send all scores to the highscore page by using innerHTML or innerText methods
@@ -37,10 +37,10 @@ window.location.href = "highscores.html";
 
 const clearHistoryBtn = document.getElementById('clearHistory');
 // "event listener cannot clear properties of null, but its defined above?"
-clearHistoryBtn?.addEventListener("click", function() {
+clearHistoryBtn?.addEventListener("click", function () {
 
-localStorage.removeItem("highscores");
-scoreListEl.innerHTML = ""
+    localStorage.removeItem("highscores");
+    scoreListEl.innerHTML = ""
 });
 
 // start of timer code here
@@ -53,36 +53,38 @@ const startScreenEl = document.querySelector("#start-screen");
 
 var time = document.getElementById("time");
 
-startBtn?.addEventListener("click", function() {
+startBtn?.addEventListener("click", function () {
+    startTimer();
+    displayNextQuestion();
+
+    // startScreenEl.classList.add("hide")
+    // questionsEl.classList.remove("hide")
+})
+
+function startTimer() {
     let secondsLeft = 10;
     //sets interval in variable
-    var timerInterval = setInterval(function() {
+    var timerInterval = setInterval(function () {
         secondsLeft--;
 
         timeRemaining.textContent = secondsLeft + " seconds left";
 
-        if(secondsLeft === 0) {
+        if (secondsLeft === 0) {
             clearInterval(timerInterval);
-            sendMessage();
+            timeRemaining.textContent = "Time is up!";
         }
     }, 1000);
-   
-    function sendMessage() {
-        timeRemaining.textContent = "Time is up!"
-    }
+}
 
-   // startScreenEl.classList.add("hide")
-   // questionsEl.classList.remove("hide")
-})
 
 const scoreListEl = document.getElementById('score-list')
 
-function showHighScores () {
+function showHighScores() {
     const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
     for (let i = 0; i < highscores.length; i++) {
         const score = highscores[i].score;
-        const initials = highscores[i].initials; 
+        const initials = highscores[i].initials;
         const liEl = document.createElement('li')
         liEl.textContent = `${initials}: ${score}`
         scoreListEl.appendChild(liEl)
@@ -91,3 +93,71 @@ function showHighScores () {
 }
 
 showHighScores()
+
+
+
+
+//Option 1
+
+
+//var h1El = document.createElement("h1");
+//h1El.textContent = "Question 1"
+// Create ordered list element
+//!!var listEl = document.createElement("button");
+// Create ordered list items
+//var li1 = document.createElement("li");
+//var li2 = document.createElement("li");
+//var li3 = document.createElement("li");
+//var li4 = document.createElement("li");
+
+var questionTitle = document.getElementById('question-title');
+var questionChoices = document.getElementById('choices');
+var currentQuestionIndex = 0;
+
+var myQuestions = [
+    {
+        question: 'first question',
+        answers: {
+            a: 'answer 1',
+            b: 'answer 2',
+            c: 'answer 3'
+        },
+        correctanswer: 'b'
+    },
+    {
+        question: 'second question',
+        answers: {
+            a: 'answer 1',
+            b: 'answer 2',
+            c: 'answer 3'
+        },
+        correctanswer: 'b'
+    },
+    {
+        question: 'third question',
+        answers: {
+            a: 'answer 1',
+            b: 'answer 2',
+            c: 'answer 3'
+        },
+        correctanswer: 'b'
+    },
+]
+
+function displayNextQuestion() {
+    var currentQuestion = myQuestions[currentQuestionIndex]
+  //  console.log(myQuestions[0].question)
+    var currentQuestionText = currentQuestion.question;
+    questionTitle.textContent = currentQuestionText;
+
+    var currentQuestionChoices = Object.values(currentQuestion.answers);
+
+    for (let i = 0; i < currentQuestionChoices.length; i++) {
+        const choice = currentQuestionChoices [i];
+        //console.log(choice);
+        
+
+    }
+}
+
+//make a button, set the text to that, append that to the question choices element that we created (this all happends inside the for loop)
