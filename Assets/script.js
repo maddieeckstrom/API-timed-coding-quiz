@@ -96,20 +96,6 @@ showHighScores()
 
 
 
-
-//Option 1
-
-
-//var h1El = document.createElement("h1");
-//h1El.textContent = "Question 1"
-// Create ordered list element
-//!!var listEl = document.createElement("button");
-// Create ordered list items
-//var li1 = document.createElement("li");
-//var li2 = document.createElement("li");
-//var li3 = document.createElement("li");
-//var li4 = document.createElement("li");
-
 var questionTitle = document.getElementById('question-title');
 var questionChoices = document.getElementById('choices');
 var currentQuestionIndex = 0;
@@ -155,7 +141,9 @@ function displayNextQuestion() {
     for (let i = 0; i < currentQuestionChoices.length; i++) {
         const choice = currentQuestionChoices [i];
         //console.log(choice);
-        
+        var listEl = document.createElement("button");
+        listEl = currentQuestionChoices;
+
 
     }
 }
