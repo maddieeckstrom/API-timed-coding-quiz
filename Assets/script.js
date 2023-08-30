@@ -81,13 +81,13 @@ const scoreListEl = document.getElementById('score-list')
 
 function showHighScores() {
     const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
-
+    
     for (let i = 0; i < highscores.length; i++) {
         const score = highscores[i].score;
         const initials = highscores[i].initials;
         const liEl = document.createElement('li')
         liEl.textContent = `${initials}: ${score}`
-        scoreListEl.appendChild(liEl)
+        scoreListEl?.appendChild(liEl)
     }
 
 }
@@ -132,19 +132,17 @@ var myQuestions = [
 
 function displayNextQuestion() {
     var currentQuestion = myQuestions[currentQuestionIndex]
-  //  console.log(myQuestions[0].question)
+    // console.log(currentQuestion.question)
     var currentQuestionText = currentQuestion.question;
     questionTitle.textContent = currentQuestionText;
 
     var currentQuestionChoices = Object.values(currentQuestion.answers);
 
     for (let i = 0; i < currentQuestionChoices.length; i++) {
-        const choice = currentQuestionChoices [i];
-        //console.log(choice);
-        var listEl = document.createElement("button");
-        listEl = currentQuestionChoices;
-
-
+        const choice = currentQuestionChoices[i];// 'answer1, answer2, answer3'
+        var listEl = document.createElement("button");//<buttron></button>
+        listEl.textContent = choice // <button>answer1</button>
+        questionChoices.appendChild(listEl)//<div class="choices"><button>answer1</button></div>
     }
 }
 
