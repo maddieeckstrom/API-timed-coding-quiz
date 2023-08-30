@@ -27,17 +27,26 @@ a:hover {
     padding: 20px;
 }
 
+.start {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .start h1 {
     display: flex;
     justify-content: center;
     color: #ff6f3c;
-    font-family: Georgia, 'Times New Roman', Times, serif;
 }
 
 .start p {
     display: flex;
     justify-content: center;
-    font-family:Georgia, 'Times New Roman', Times, serif;
+}
+
+.start button {
+    align-self: center;
 }
 
 button {
@@ -49,16 +58,21 @@ button:hover {
     font-weight: bold;
 }
 
-/* how do I center the start quiz button? */
 
 /* .hide {
     display: none;
 } */
 
+.hide {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
 .hide h2 {
     display: flex;
     justify-content: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
     color: #ff6f3c;
     text-decoration: #ffc93c wavy underline;
 }
@@ -66,7 +80,15 @@ button:hover {
 .hide p {
     display: flex;
     justify-content: center;
-    font-family: Georgia, 'Times New Roman', Times, serif;
+}
+
+.hide button {
+    align-self: center;
+}
+
+.choices {
+    display: flex;
+    flex-direction: column;
 }
 
 .highscore-style h1 {
@@ -79,10 +101,15 @@ button:hover {
 
 .highscore-style ul {
     display: flex;
-    justify-content: center;
+    flex-direction: column;
     font-family: Georgia, 'Times New Roman', Times, serif;
     list-style-type: none;
     color: #155263;
+}
+
+#score-list {
+    display: flex;
+    align-content: center;
 }
 
 .highscore-style button a {

@@ -62,7 +62,7 @@ startBtn?.addEventListener("click", function () {
 })
 
 function startTimer() {
-    let secondsLeft = 10;
+    let secondsLeft = 100;
     //sets interval in variable
     var timerInterval = setInterval(function () {
         secondsLeft--;
@@ -75,26 +75,6 @@ function startTimer() {
         }
     }, 1000);
 }
-
-
-const scoreListEl = document.getElementById('score-list')
-
-function showHighScores() {
-    const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
-    
-    for (let i = 0; i < highscores.length; i++) {
-        const score = highscores[i].score;
-        const initials = highscores[i].initials;
-        const liEl = document.createElement('li')
-        liEl.textContent = `${initials}: ${score}`
-        scoreListEl?.appendChild(liEl)
-    }
-
-}
-
-showHighScores()
-
-
 
 var questionTitle = document.getElementById('question-title');
 var questionChoices = document.getElementById('choices');
@@ -146,4 +126,48 @@ function displayNextQuestion() {
     }
 }
 
-//make a button, set the text to that, append that to the question choices element that we created (this all happends inside the for loop)
+//var resultsContainer = document.getElementById('results');
+
+//function showResults() {
+   
+    // to keep track of user's answers
+    //var userAnswer = '';
+    //var numCorrect = 0;
+
+    //var currentQuestionCorrect = Object.values(currentQuestion.correctanswer);
+
+    // for each question
+    //for (let i = 0; i < currentQuestionCorrect.length; i++) {
+        //const element = currentQuestionCorrect[i];
+        
+        // find selected answer
+        //userAnswer = 
+
+        // if answer is correct
+        //if(userAnswer===questions[i].currentQuestionCorrect) {
+            //numCorrect++;
+        //}
+        //else {secondsLeft = secondsLeft - 15;
+            //}
+            //
+        //}
+    //}
+//}
+
+
+const scoreListEl = document.getElementById('score-list')
+
+function showHighScores() {
+    const highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+    
+    for (let i = 0; i < highscores.length; i++) {
+        const score = highscores[i].score;
+        const initials = highscores[i].initials;
+        const liEl = document.createElement('li')
+        liEl.textContent = `${initials}: ${score}`
+        scoreListEl?.appendChild(liEl)
+    }
+
+}
+
+showHighScores()
