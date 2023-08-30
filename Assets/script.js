@@ -1,48 +1,4 @@
 
-const submitBtn = document.getElementById('submit');
-// event listener cannot read properties of null?
-submitBtn?.addEventListener("click", function () {
-
-    var score = document.getElementById("final-score");
-    var initials = document.getElementById("initial");
-    // console.log(initials);
-
-    // write an if statement here to make sure initials value is not blank
-    if (initials.value === "") {
-        alert("Please provide initials");
-        return;
-    }
-
-    var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
-
-    var newScore = {
-        score: 10,
-        initials: initials.value,
-    };
-
-
-    highscores.push(newScore);
-    console.log({ highscores, newScore })
-    localStorage.setItem('highscores', JSON.stringify(highscores));
-    //redirect to highscores page and display scores there
-    window.location.href = "highscores.html";
-
-    //JSON.parse(window.localStorage.getItem('highscores'));
-    //}
-
-});
-// use a loop to send all scores to the highscore page by using innerHTML or innerText methods
-
-// connecting the clear button in highscores.html to remove local storage data
-
-const clearHistoryBtn = document.getElementById('clearHistory');
-// "event listener cannot clear properties of null, but its defined above?"
-clearHistoryBtn?.addEventListener("click", function () {
-
-    localStorage.removeItem("highscores");
-    scoreListEl.innerHTML = ""
-});
-
 // start of timer code here
 
 let timeRemaining = document.querySelector(".timer");
@@ -148,12 +104,53 @@ function displayNextQuestion() {
             //numCorrect++;
         //}
         //else {secondsLeft = secondsLeft - 15;
-            //}
-            //
         //}
     //}
 //}
 
+
+const submitBtn = document.getElementById('submit');
+// event listener cannot read properties of null?
+submitBtn?.addEventListener("click", function () {
+
+    var score = document.getElementById("final-score");
+    var initials = document.getElementById("initial");
+    // console.log(initials);
+
+    // write an if statement here to make sure initials value is not blank
+    if (initials.value === "") {
+        alert("Please provide initials");
+        return;
+    }
+
+    var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
+
+    var newScore = {
+        score: 10, //score should eventually be set to numCorrect ?
+        initials: initials.value,
+    };
+
+
+    highscores.push(newScore);
+    console.log({ highscores, newScore })
+    localStorage.setItem('highscores', JSON.stringify(highscores));
+    //redirect to highscores page and display scores there
+    window.location.href = "highscores.html";
+
+    //JSON.parse(window.localStorage.getItem('highscores'));
+    //}
+
+});
+
+// connecting the clear button in highscores.html to remove local storage data
+
+const clearHistoryBtn = document.getElementById('clearHistory');
+// "event listener cannot clear properties of null, but its defined above?"
+clearHistoryBtn?.addEventListener("click", function () {
+
+    localStorage.removeItem("highscores");
+    scoreListEl.innerHTML = ""
+});
 
 const scoreListEl = document.getElementById('score-list')
 
