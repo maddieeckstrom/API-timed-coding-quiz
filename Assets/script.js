@@ -44,7 +44,7 @@ var myQuestions = [
             b: 'answer 2',
             c: 'answer 3'
         },
-        correctanswer: 'b'
+        correctanswer: 'answer 2'
     },
     {
         question: 'second question',
@@ -53,7 +53,7 @@ var myQuestions = [
             b: 'answer 2',
             c: 'answer 3'
         },
-        correctanswer: 'b'
+        correctanswer: 'answer 2'
     },
     {
         question: 'third question',
@@ -62,7 +62,7 @@ var myQuestions = [
             b: 'answer 2',
             c: 'answer 3'
         },
-        correctanswer: 'b'
+        correctanswer: 'answer 2'
     },
 ]
 
@@ -82,32 +82,27 @@ function displayNextQuestion() {
     }
 }
 
-//var resultsContainer = document.getElementById('results');
+//select the 'choices' container and give it an 'onclick' that calls the new 'questionClick' function 
+var choicesEl = document.getElementById('choices');
+// the line of code below is preventing highscores from showing on highscore page (code lines 107-138), but without it, answers aren't logging when answer button is clicked (code lines 90-105)?
+choicesEl.onclick = questionClick;
 
-//function showResults() {
-   
-    // to keep track of user's answers
-    //var userAnswer = '';
-    //var numCorrect = 0;
-
-    //var currentQuestionCorrect = Object.values(currentQuestion.correctanswer);
-
-    // for each question
-    //for (let i = 0; i < currentQuestionCorrect.length; i++) {
-        //const element = currentQuestionCorrect[i];
-        
-        // find selected answer
-        //userAnswer = 
-
-        // if answer is correct
-        //if(userAnswer===questions[i].currentQuestionCorrect) {
-            //numCorrect++;
-        //}
-        //else {secondsLeft = secondsLeft - 15;
-        //}
-    //}
-//}
-
+//to register if the answer the user clicks is correct or not
+function questionClick(event) {
+    //set the event.target to a variable (the button we clicked)
+    var choiceBtn = event.target;
+    var numCorrect = 0;
+    // check if the textContent of the button matches the correctanswer value
+    if (
+        choiceBtn.textContent === myQuestions[currentQuestionIndex].correctanswer
+    ) {
+        console.log('correct');
+        numCorrect++;
+    } else {
+        console.log('wrong');
+        secondsLeft = secondsLeft - 15;
+    }
+}
 
 const submitBtn = document.getElementById('submit');
 // event listener cannot read properties of null?
@@ -126,7 +121,7 @@ submitBtn?.addEventListener("click", function () {
     var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
     var newScore = {
-        score: 10, //score should eventually be set to numCorrect ?
+        score: 10, //how can I set this to numCorrect?
         initials: initials.value,
     };
 
