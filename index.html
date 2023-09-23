@@ -17,22 +17,23 @@
     <div class="wrapper">
         <div id="start-screen" class="start">
             <h1>Timed Coding Quiz Challenge</h1>
-            <p>
-                Try to answer the following code-related questions within the time limit. Be careful, because incorrect answers will penalize your score and time by 15 seconds!
-            </p>
+            <p>Try to answer the following code-related questions within the time limit. Be careful, because incorrect answers will penalize your score and time by 15 seconds!</p>
             <button id="start">Start Quiz</button>
         </div>
-        <div id="questions" class="hide">
-            <h2 id="question-title"></h2>
-            <div id="choices" class="choices"></div>
+        <div id="questions-box">
+            <div id="questions" class="style-box">
+                <h2 id="question-title"></h2>
+                <div id="choices" class="choices"></div>
+            </div>
         </div>
-        <div id="end-screen" class="hide">
-            <h2>Fin</h2>
-            <p>Your final score is <span id="final-score"></span></p>
-            <p>Enter initials:<input type="text" id="initial" max="3" /></p>
-            <button id="submit">Submit</button>
+        <div id="results" class="hide">
+            <div id="end-screen" class="style-box">
+                <h2>Fin</h2>
+                <p>Your final score is <span id="final-score"></span></p>
+                <p>Enter initials:<input type="text" id="initial" max="3" /></p>
+                <button id="submit">Submit</button>
+            </div>
         </div>
-        <div id="feedback" class="feedback hide"></div>
     </div>
     <script src="./Assets/script.js"></script>
 </body>

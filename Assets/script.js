@@ -4,30 +4,30 @@
 let timeRemaining = document.querySelector(".timer");
 const startBtn = document.querySelector("#start");
 const startScreenEl = document.querySelector("#start-screen");
-//where do I add this test id?
-//const questionsEl = document.querySelector("#test");
-
-var time = document.getElementById("time");
+const time = document.getElementById("time");
+let secondsLeft = 60;
 
 startBtn?.addEventListener("click", function () {
     startTimer();
     displayNextQuestion();
 
-    // startScreenEl.classList.add("hide")
-    // questionsEl.classList.remove("hide")
+    startScreenEl.classList.add("hide")
 })
 
 function startTimer() {
-    let secondsLeft = 100;
+    const questionsEl = document.getElementById("questions-box");
+    const resultsBoxEl = document.getElementById("results");
     //sets interval in variable
     var timerInterval = setInterval(function () {
         secondsLeft--;
 
         timeRemaining.textContent = secondsLeft + " seconds left";
 
-        if (secondsLeft === 0) {
+        if (secondsLeft <= 0) {
             clearInterval(timerInterval);
             timeRemaining.textContent = "Time is up!";
+            resultsBoxEl.classList.remove("hide");
+            questionsEl.classList.add("hide");
         }
     }, 1000);
 }
@@ -38,32 +38,78 @@ var currentQuestionIndex = 0;
 
 var myQuestions = [
     {
-        question: 'first question',
+        question: 'How do you target a specific element within an array index?',
         answers: {
-            a: 'answer 1',
-            b: 'answer 2',
-            c: 'answer 3'
+            a: 'dot notation',
+            b: 'bracket notation',
+            c: 'either'
         },
-        correctanswer: 'answer 2'
+        correctanswer: 'bracket notation'
     },
     {
-        question: 'second question',
+        question: 'Which elements are used to test TRUE or FALSE values in variables?',
         answers: {
-            a: 'answer 1',
-            b: 'answer 2',
-            c: 'answer 3'
+            a: 'Conditional statements',
+            b: 'Trigger readers',
+            c: 'Comparison and logical operators'
         },
-        correctanswer: 'answer 2'
+        correctanswer: 'Comparison and logical operators'
     },
     {
-        question: 'third question',
+        question: 'Which element is used to store multiple values in a single variable?',
         answers: {
-            a: 'answer 1',
-            b: 'answer 2',
-            c: 'answer 3'
+            a: 'Strings',
+            b: 'Variables',
+            c: 'Arrays'
         },
-        correctanswer: 'answer 2'
+        correctanswer: 'Arrays'
     },
+    {
+        question: 'In JavaScript, what is used in conjunction with HTML to react to certain elements?',
+        answers: {
+            a: 'Events',
+            b: 'Boolean',
+            c: 'Condition'
+        },
+        correctanswer: 'Events'
+    },
+    {
+        question: 'What is the element called that is used to describe the set of variables, objects, and functions you explicitly have access to?',
+        answers: {
+            a: 'Restriction',
+            b: 'Scope',
+            c: 'Range'
+        },
+        correctanswer: 'Scope'
+    },
+    {
+        question: 'Which of these answers would you use for a variable that could be reassigned',
+        answers: {
+            a: 'var',
+            b: 'const',
+            c: 'let'
+        },
+        correctanswer: 'let'
+    },
+    {
+        question: 'If "x" == 2, would could "x" be?',
+        answers: {
+            a: '20',
+            b: '-2',
+            c: 'none of the above'
+        },
+        correctanswer: '-2'
+    },
+    {
+        question: 'What is DOM?',
+        answers: {
+            a: 'Document Of Modal',
+            b: 'Document Of Maker',
+            c: 'Document Object Model'
+        },
+        correctanswer: 'Document Object Model'
+    },
+
 ]
 
 function displayNextQuestion() {
@@ -71,6 +117,7 @@ function displayNextQuestion() {
     // console.log(currentQuestion.question)
     var currentQuestionText = currentQuestion.question;
     questionTitle.textContent = currentQuestionText;
+    questionChoices.innerHTML = "";
 
     var currentQuestionChoices = Object.values(currentQuestion.answers);
 
@@ -78,21 +125,18 @@ function displayNextQuestion() {
         const choice = currentQuestionChoices[i];// 'answer1, answer2, answer3'
         var listEl = document.createElement("button");//<buttron></button>
         listEl.textContent = choice // <button>answer1</button>
+
+        listEl.onclick = questionScore;
+
         questionChoices.appendChild(listEl)//<div class="choices"><button>answer1</button></div>
     }
 }
+   
+let numCorrect = 0;
 
-//select the 'choices' container and give it an 'onclick' that calls the new 'questionClick' function 
-var choicesEl = document.getElementById('choices');
-// the line of code below is preventing highscores from showing on highscore page (code lines 107-138), but without it, answers aren't logging when answer button is clicked (code lines 90-105)?
-choicesEl.onclick = questionClick;
+function questionScore(event) {
+    let choiceBtn = event.target;
 
-//to register if the answer the user clicks is correct or not
-function questionClick(event) {
-    //set the event.target to a variable (the button we clicked)
-    var choiceBtn = event.target;
-    var numCorrect = 0;
-    // check if the textContent of the button matches the correctanswer value
     if (
         choiceBtn.textContent === myQuestions[currentQuestionIndex].correctanswer
     ) {
@@ -102,6 +146,9 @@ function questionClick(event) {
         console.log('wrong');
         secondsLeft = secondsLeft - 15;
     }
+
+    currentQuestionIndex++;
+    displayNextQuestion();
 }
 
 const submitBtn = document.getElementById('submit');
@@ -121,7 +168,7 @@ submitBtn?.addEventListener("click", function () {
     var highscores = JSON.parse(localStorage.getItem('highscores')) || [];
 
     var newScore = {
-        score: 10, //how can I set this to numCorrect?
+        score: numCorrect,
         initials: initials.value,
     };
 
