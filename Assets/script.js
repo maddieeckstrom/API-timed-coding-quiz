@@ -152,14 +152,12 @@ function questionScore(event) {
 }
 
 const submitBtn = document.getElementById('submit');
-// event listener cannot read properties of null?
 submitBtn?.addEventListener("click", function () {
 
     var score = document.getElementById("final-score");
     var initials = document.getElementById("initial");
     // console.log(initials);
 
-    // write an if statement here to make sure initials value is not blank
     if (initials.value === "") {
         alert("Please provide initials");
         return;
@@ -179,15 +177,10 @@ submitBtn?.addEventListener("click", function () {
     //redirect to highscores page and display scores there
     window.location.href = "highscores.html";
 
-    //JSON.parse(window.localStorage.getItem('highscores'));
-    //}
-
 });
 
 // connecting the clear button in highscores.html to remove local storage data
-
 const clearHistoryBtn = document.getElementById('clearHistory');
-// "event listener cannot clear properties of null, but its defined above?"
 clearHistoryBtn?.addEventListener("click", function () {
 
     localStorage.removeItem("highscores");
