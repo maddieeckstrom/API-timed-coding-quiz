@@ -43,6 +43,7 @@ a:hover {
 .start p {
     display: flex;
     justify-content: center;
+    text-align: center;
 }
 
 .start button {
@@ -88,6 +89,7 @@ button:hover {
 
 #question-title {
     text-decoration: none;
+    text-align: center;
 }
 
 .choices {
