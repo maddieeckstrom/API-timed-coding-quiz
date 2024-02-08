@@ -113,6 +113,14 @@ var myQuestions = [
 ]
 
 function displayNextQuestion() {
+
+    if (currentQuestionIndex >= myQuestions.length) {
+        questionTitle.textContent = "You've answered all the questions";
+        questionChoices.innerHTML = "";
+        secondsLeft = 3;
+        return; // Exit the function early as there are no more questions to display
+    }
+
     var currentQuestion = myQuestions[currentQuestionIndex]
     // console.log(currentQuestion.question)
     var currentQuestionText = currentQuestion.question;
@@ -130,6 +138,7 @@ function displayNextQuestion() {
 
         questionChoices.appendChild(listEl)//<div class="choices"><button>answer1</button></div>
     }
+
 }
    
 let numCorrect = 0;
@@ -151,7 +160,7 @@ function questionScore(event) {
     currentQuestionIndex++;
     displayNextQuestion();
 
-    // Set the text content of scoreElement to display newScore.score
+    // Set the text content of scoreElement to display numCorrect
     scoreElement.textContent = "Your final score is " + numCorrect;
 }
 
