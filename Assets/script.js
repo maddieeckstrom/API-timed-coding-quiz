@@ -136,27 +136,29 @@ let numCorrect = 0;
 
 function questionScore(event) {
     let choiceBtn = event.target;
+    var scoreElement = document.getElementById("final-score");
 
     if (
         choiceBtn.textContent === myQuestions[currentQuestionIndex].correctanswer
     ) {
-        console.log('correct');
+        // console.log('correct');
         numCorrect++;
     } else {
-        console.log('wrong');
+        // console.log('wrong');
         secondsLeft = secondsLeft - 15;
     }
 
     currentQuestionIndex++;
     displayNextQuestion();
+
+    // Set the text content of scoreElement to display newScore.score
+    scoreElement.textContent = "Your final score is " + numCorrect;
 }
 
 const submitBtn = document.getElementById('submit');
 submitBtn?.addEventListener("click", function () {
 
-    var score = document.getElementById("final-score");
     var initials = document.getElementById("initial");
-    // console.log(initials);
 
     if (initials.value === "") {
         alert("Please provide initials");
@@ -170,9 +172,11 @@ submitBtn?.addEventListener("click", function () {
         initials: initials.value,
     };
 
+    console.log("Setting score to:", newScore.score);
 
     highscores.push(newScore);
-    console.log({ highscores, newScore })
+    // console.log({ highscores, newScore })
+
     localStorage.setItem('highscores', JSON.stringify(highscores));
     //redirect to highscores page and display scores there
     window.location.href = "highscores.html";
